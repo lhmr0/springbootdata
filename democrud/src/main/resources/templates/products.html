@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+     <title>HAMP</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Lista Productos</h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Ver</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"><a href="/product/${product.id}">Codigo</a></td>
+
+                <td th:text="${product.name}">Descripcion</td>
+                <td th:text="${product.price}">Precio</td>
+                <td><a th:href="${ '/product/' + product.id}">Ver</a></td>
+                <td><a th:href="${'/product/edit/' + product.id}">Editar</a></td>
+                <td><a th:href="${'/product/delete/' + product.id}">Eliminar</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
